@@ -83,7 +83,7 @@ pub enum FetchError {
     NotHttps,
     /// The URL could not be split into host and path.
     MalformedUrl(String),
-    /// The URL's host is not one of the ten in feeds.rs.
+    /// The URL's host is not one of the eighteen in feeds.rs.
     HostNotAllowed(String),
     /// The hostname did not resolve.
     Dns(io::Error),
