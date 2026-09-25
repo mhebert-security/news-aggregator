@@ -69,10 +69,10 @@ pub struct Feed {
     pub category: Category,
 }
 
-/// The sources this aggregator follows. Fifteen entries, all HTTPS. The fetcher
+/// The sources this aggregator follows. Seventeen entries, all HTTPS. The fetcher
 /// walks this list in order, never follows a redirect, and connects only to
 /// the allowlisted host that the URL itself names (fetch.rs enforces that).
-pub const FEEDS: [Feed; 15] = [
+pub const FEEDS: [Feed; 17] = [
     // NVD retired its RSS exports; the 2.0 REST search API is the current
     // public read path. It answers JSON, which fetch.rs reads with a narrow
     // walker rather than the XML parser. Twenty results per pass keeps the
@@ -110,6 +110,16 @@ pub const FEEDS: [Feed; 15] = [
     Feed {
         url: "https://industrialcyber.co/feed/",
         source_name: "Industrial Cyber",
+        category: Category::Ot,
+    },
+    Feed {
+        url: "https://kill-the-newsletter.com/feeds/uzef1sm74ti73d51cwi4.xml",
+        source_name: "Dragos Blog",
+        category: Category::Ot,
+    },
+    Feed {
+        url: "https://kill-the-newsletter.com/feeds/ubsmbcbpubg5wuwpdv5f.xml",
+        source_name: "Claroty Team82",
         category: Category::Ot,
     },
     Feed {
@@ -190,9 +200,9 @@ mod tests {
 
     #[test]
     fn feed_list_is_complete_distinct_and_https() {
-        // The source list is the whole egress surface: fifteen entries, every
+        // The source list is the whole egress surface: seventeen entries, every
         // url distinct and https, every name distinct.
-        assert_eq!(FEEDS.len(), 15);
+        assert_eq!(FEEDS.len(), 17);
         let mut urls = HashSet::new();
         let mut names = HashSet::new();
         for feed in FEEDS {
